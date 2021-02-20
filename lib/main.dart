@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'controllers/navigation_controller.dart';
 import 'screens/mindful_sessions_screen.dart';
-import 'screens/navigation_bar_screen.dart';
 
 void main() {
   runApp(
     // For widgets to be able to read providers, we need to wrap the entire
     // application in a "ProviderScope" widget.
     // This is where the state of our providers will be stored.
-    ProviderScope(
-      child: const MyApp(),
+    const ProviderScope(
+      child: MyApp(),
     ),
   );
 }

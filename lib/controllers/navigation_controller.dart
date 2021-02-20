@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../notifiers/navigation_notifier.dart';
-import 'good_morning_screen.dart';
-import 'mindful_sessions_screen.dart';
+import '../models/navigation_notifier.dart';
+import '../screens/good_morning_screen.dart';
+import '../screens/mindful_sessions_screen.dart';
+import '../widgets/bottom_nav.dart';
 
 final provider = StateNotifierProvider((ref) => NavigationNotifier());
 
@@ -17,15 +18,15 @@ class NavigationBarScreen extends HookWidget {
     int currentIndex;
     Widget body;
     switch (currentPage) {
-      case NavigationBarEvent.TODAY:
+      case NavigationBarEvent.today:
         body = const GoodMorningScreen();
         currentIndex = 0;
         break;
-      case NavigationBarEvent.MINDFUL:
+      case NavigationBarEvent.mindful:
         body = const MindfulSessionsScreen();
         currentIndex = 1;
         break;
-      case NavigationBarEvent.MORE:
+      case NavigationBarEvent.more:
         body = const Text('More info');
         currentIndex = 2;
         break;
@@ -33,25 +34,8 @@ class NavigationBarScreen extends HookWidget {
 
     return Scaffold(
       body: body,
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Today',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Mindfulness',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'More',
-          ),
-        ],
-        currentIndex: currentIndex,
-        selectedItemColor: Colors.blue[800],
-        onTap: pageModel.selectPage,
-      ),
+      bottomNavigationBar:
+          BottomNav(currentIndex: currentIndex, onTap: pageModel.selectPage),
     );
   }
 }
