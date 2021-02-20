@@ -1,5 +1,5 @@
 name: meta_curiosity
-description: A new Flutter project.
+description: A habit-formation app with a touch of curiosity!
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -23,9 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.19.2+1
-  hooks_riverpod: ^0.12.3+1
+  hooks_riverpod: ^0.12.4
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +36,9 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/audio.mp3
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

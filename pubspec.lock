@@ -82,7 +82,7 @@ packages:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.3+1"
+    version: "0.12.4"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -108,7 +108,7 @@ packages:
       name: hooks_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.3+1"
+    version: "0.12.4"
   json_annotation:
     dependency: transitive
     description:
@@ -164,7 +164,7 @@ packages:
       name: riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.3"
+    version: "0.12.4"
   sky_engine:
     dependency: transitive
     description: flutter
