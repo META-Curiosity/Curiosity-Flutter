@@ -76,13 +76,15 @@ class _AudioAppState extends State<AudioApp> {
               position = duration;
             });
           }
-        }, onError: (msg) {
-          setState(() {
-            playerState = PlayerState.stopped;
-            duration = Duration(seconds: 0);
-            position = Duration(seconds: 0);
-          });
         });
+        // ,
+        //     onError: (msg) {
+        //   setState(() {
+        //     playerState = PlayerState.stopped;
+        //     duration = Duration(seconds: 0);
+        //     position = Duration(seconds: 0);
+        //   });
+        // });
   }
 
   Future play() async {
