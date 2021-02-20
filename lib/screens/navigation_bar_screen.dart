@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../notifiers/navigation_notifier.dart';
-import '../screens/good_morning_page.dart';
+import 'good_morning_screen.dart';
+import 'mindful_sessions_screen.dart';
 
 final provider = StateNotifierProvider((ref) => NavigationNotifier());
 
 class NavigationBarScreen extends HookWidget {
+  const NavigationBarScreen({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final pageModel = useProvider(provider);
@@ -16,15 +18,15 @@ class NavigationBarScreen extends HookWidget {
     Widget body;
     switch (currentPage) {
       case NavigationBarEvent.TODAY:
-        body = GoodMorningPage();
+        body = const GoodMorningScreen();
         currentIndex = 0;
         break;
       case NavigationBarEvent.MINDFUL:
-        body = Text("Mindful sessions");
+        body = const MindfulSessionsScreen();
         currentIndex = 1;
         break;
       case NavigationBarEvent.MORE:
-        body = Text("More info");
+        body = const Text('More info');
         currentIndex = 2;
         break;
     }

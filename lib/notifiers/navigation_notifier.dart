@@ -11,13 +11,13 @@ class NavigationNotifier extends StateNotifier<PageModel> {
     print("selected page $i");
     switch (i) {
       case 0:
-        state = PageModel(NavigationBarEvent.TODAY);
+        state = const PageModel(NavigationBarEvent.TODAY);
         break;
       case 1:
-        state = PageModel(NavigationBarEvent.MINDFUL);
+        state = const PageModel(NavigationBarEvent.MINDFUL);
         break;
       case 2:
-        state = PageModel(NavigationBarEvent.MORE);
+        state = const PageModel(NavigationBarEvent.MORE);
         break;
     }
   }

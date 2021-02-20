@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GoodMorningPage extends StatelessWidget {
-  const GoodMorningPage({Key key}) : super(key: key);
+class GoodMorningScreen extends StatelessWidget {
+  const GoodMorningScreen({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Center(
