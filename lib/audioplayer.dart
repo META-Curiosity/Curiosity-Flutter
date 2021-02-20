@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 typedef void OnError(Exception exception);
 
 const kUrl =
-    "https://www.mediacollege.com/downloads/sound-effects/nature/forest/rainforest-ambient.mp3";
+    "https://www.mboxdrive.com/Nils Frahm at Funkhaus Berlin.mp3";
 
 void main() {
   runApp(MaterialApp(home: Scaffold(body: AudioApp())));
@@ -20,6 +20,11 @@ void main() {
 enum PlayerState { stopped, playing, paused }
 
 class AudioApp extends StatefulWidget {
+  final String name;
+
+
+
+  const AudioApp ({ Key key, this.name }): super(key: key);
   @override
   _AudioAppState createState() => _AudioAppState();
 }
@@ -68,25 +73,6 @@ class _AudioAppState extends State<AudioApp> {
         .listen((p) => setState(() => position = p));
     _audioPlayerStateSubscription =
         audioPlayer.onPlayerStateChanged.listen((s) {
-<<<<<<< HEAD
-          if (s == AudioPlayerState.PLAYING) {
-            setState(() => duration = audioPlayer.duration);
-          } else if (s == AudioPlayerState.STOPPED) {
-            onComplete();
-            setState(() {
-              position = duration;
-            });
-          }
-        });
-        // ,
-        //     onError: (msg) {
-        //   setState(() {
-        //     playerState = PlayerState.stopped;
-        //     duration = Duration(seconds: 0);
-        //     position = Duration(seconds: 0);
-        //   });
-        // });
-=======
       if (s == AudioPlayerState.PLAYING) {
         setState(() => duration = audioPlayer.duration);
       } else if (s == AudioPlayerState.STOPPED) {
@@ -95,14 +81,14 @@ class _AudioAppState extends State<AudioApp> {
           position = duration;
         });
       }
-    }, onError: () {
-      setState(() {
-        playerState = PlayerState.stopped;
-        duration = Duration(seconds: 0);
-        position = Duration(seconds: 0);
-      });
     });
->>>>>>> b2b7b6a66b0af9e15c9c8aa06f777f443ca76ede
+        // }, onError: () {
+        //   setState(() {
+        //     playerState = PlayerState.stopped;
+        //     duration = Duration(seconds: 0);
+        //     position = Duration(seconds: 0);
+        //   });
+        // });
   }
 
   Future play() async {
@@ -176,7 +162,7 @@ class _AudioAppState extends State<AudioApp> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Flutter Audioplayer',
+              widget.name,
               style: textTheme.headline,
             ),
             Material(child: _buildPlayer()),
@@ -187,17 +173,17 @@ class _AudioAppState extends State<AudioApp> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    RaisedButton(
-                      onPressed: () => _loadFile(),
-                      child: Text('Download'),
-                    ),
-                    if (localFilePath != null)
-                      RaisedButton(
-                        onPressed: () => _playLocal(),
-                        child: Text('play local'),
-                      ),
-                  ],
+                  // children: [
+                  //   RaisedButton(
+                  //     onPressed: () => _loadFile(),
+                  //     child: Text('Download'),
+                  //   ),
+                  //   if (localFilePath != null)
+                  //     RaisedButton(
+                  //       onPressed: () => _playLocal(),
+                  //       child: Text('play local'),
+                  //     ),
+                  // ],
                 ),
               ),
           ],
@@ -207,65 +193,63 @@ class _AudioAppState extends State<AudioApp> {
   }
 
   Widget _buildPlayer() => Container(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(mainAxisSize: MainAxisSize.min, children: [
-              IconButton(
-                onPressed: isPlaying ? null : () => play(),
-                iconSize: 64.0,
-                icon: Icon(Icons.play_arrow),
-                color: Colors.cyan,
-              ),
-              IconButton(
-                onPressed: isPlaying ? () => pause() : null,
-                iconSize: 64.0,
-                icon: Icon(Icons.pause),
-                color: Colors.cyan,
-              ),
-              IconButton(
-                onPressed: isPlaying || isPaused ? () => stop() : null,
-                iconSize: 64.0,
-                icon: Icon(Icons.stop),
-                color: Colors.cyan,
-              ),
-            ]),
-            if (duration != null)
-              Slider(
-                  value: position?.inMilliseconds?.toDouble() ?? 0.0,
-                  onChanged: (double value) {
-                    return audioPlayer.seek((value / 1000).roundToDouble());
-                  },
-                  min: 0.0,
-                  max: duration.inMilliseconds.toDouble()),
-            if (position != null) _buildMuteButtons(),
-            if (position != null) _buildProgressView()
-          ],
-        ),
-      );
+    padding: EdgeInsets.all(16.0),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(mainAxisSize: MainAxisSize.min, children: [
+          IconButton(
+            onPressed: isPlaying ? null : () => play(),
+            iconSize: 64.0,
+            icon: Icon(Icons.play_arrow),
+            color: Colors.cyan,
+          ),
+          IconButton(
+            onPressed: isPlaying ? () => pause() : null,
+            iconSize: 64.0,
+            icon: Icon(Icons.pause),
+            color: Colors.cyan,
+          ),
+          IconButton(
+            onPressed: isPlaying || isPaused ? () => stop() : null,
+            iconSize: 64.0,
+            icon: Icon(Icons.stop),
+            color: Colors.cyan,
+          ),
+        ]),
+        if (duration != null)
+          Slider(
+              value: position?.inMilliseconds?.toDouble() ?? 0.0,
+              onChanged: (double value) {
+                return audioPlayer.seek((value / 1000).roundToDouble());
+              },
+              min: 0.0,
+              max: duration.inMilliseconds.toDouble()),
+        if (position != null) _buildMuteButtons(),
+        if (position != null) _buildProgressView()
+      ],
+    ),
+  );
 
   Row _buildProgressView() => Row(mainAxisSize: MainAxisSize.min, children: [
-        Padding(
-          padding: EdgeInsets.all(12.0),
-          child: CircularProgressIndicator(
-            value: position != null && position.inMilliseconds > 0
-                ? (position?.inMilliseconds?.toDouble() ?? 0.0) /
-                    (duration?.inMilliseconds?.toDouble() ?? 0.0)
-                : 0.0,
-            valueColor: AlwaysStoppedAnimation(Colors.cyan),
-            backgroundColor: Colors.grey.shade400,
-          ),
-        ),
-        Text(
-          position != null
-              ? "${positionText ?? ''} / ${durationText ?? ''}"
-              : duration != null
-                  ? durationText
-                  : '',
-          style: TextStyle(fontSize: 24.0),
-        )
-      ]);
+    Padding(
+      padding: EdgeInsets.all(12.0),
+      child: CircularProgressIndicator(
+        value: position != null && position.inMilliseconds > 0
+            ? (position?.inMilliseconds?.toDouble() ?? 0.0) /
+            (duration?.inMilliseconds?.toDouble() ?? 0.0)
+            : 0.0,
+        valueColor: AlwaysStoppedAnimation(Colors.cyan),
+        backgroundColor: Colors.grey.shade400,
+      ),
+    ),
+    Text(
+      position != null
+          ? "${positionText ?? ''} / ${durationText ?? ''}"
+          : duration != null ? durationText : '',
+      style: TextStyle(fontSize: 24.0),
+    )
+  ]);
 
   Row _buildMuteButtons() {
     return Row(

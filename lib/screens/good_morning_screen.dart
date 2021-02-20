@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
 
 class GoodMorningScreen extends StatelessWidget {
   const GoodMorningScreen({Key key}) : super(key: key);
@@ -19,7 +19,7 @@ class GoodMorningScreen extends StatelessWidget {
             "It's time to set your goals for today.",
             style: TextStyle(fontSize: 16),
           ),
-          SvgPicture.asset('assets/images/target.svg', semanticsLabel: 'Target')
+          // SvgPicture.asset('assets/images/target.svg', semanticsLabel: 'Target')
         ],
       ),
     ));
