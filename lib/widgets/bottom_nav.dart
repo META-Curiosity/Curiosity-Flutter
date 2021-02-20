@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNav extends StatelessWidget {
   const BottomNav({
@@ -14,22 +15,27 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+      items: <BottomNavigationBarItem>[
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.today),
           label: 'Today',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.business),
+          icon: SvgPicture.asset('assets/images/mindfulness.svg',
+              semanticsLabel: 'Mindfulness',
+              height: 25,
+              color: currentIndex == 1
+                  ? const Color(0xFF4B81EF)
+                  : const Color(0xFF737373)),
           label: 'Mindfulness',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.school),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.more_horiz),
           label: 'More',
         ),
       ],
       currentIndex: currentIndex,
-      selectedItemColor: Colors.blue[800],
+      selectedItemColor: const Color(0xFF4B81EF),
       onTap: onTap,
     );
   }

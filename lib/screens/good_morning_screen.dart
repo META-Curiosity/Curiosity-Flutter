@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GoodMorningScreen extends StatelessWidget {
   const GoodMorningScreen({Key key}) : super(key: key);
@@ -19,7 +19,24 @@ class GoodMorningScreen extends StatelessWidget {
             "It's time to set your goals for today.",
             style: TextStyle(fontSize: 16),
           ),
-          // SvgPicture.asset('assets/images/target.svg', semanticsLabel: 'Target')
+          const SizedBox(height: 84),
+          SvgPicture.asset('assets/images/target.svg',
+              semanticsLabel: 'Target', height: 200),
+          const SizedBox(height: 144),
+          SizedBox(
+            width: 275,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: const Color(0xFF4B81EF),
+              ),
+              onPressed: () {
+                // Navigate to the second screen using a named route.
+                Navigator.pushNamed(context, '/audio_player');
+              },
+              child: const Text("Set Today's Task"),
+            ),
+          )
         ],
       ),
     ));

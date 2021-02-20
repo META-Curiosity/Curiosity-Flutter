@@ -25,9 +25,8 @@ dependencies:
     sdk: flutter
   audioplayer: ^0.8.1
   audioplayers: ^0.17.4
-
   cupertino_icons: ^1.0.2
-#  flutter_svg: ^0.19.2+1
+  flutter_svg: ^0.20.0-nullsafety.3
   hooks_riverpod: ^0.12.4
   http: ^0.12.2
   path_provider: ^1.6.27
@@ -43,6 +42,7 @@ flutter:
   assets:
     - assets/audio/audio.mp3
     - assets/images/target.svg
+    - assets/images/mindfulness.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
