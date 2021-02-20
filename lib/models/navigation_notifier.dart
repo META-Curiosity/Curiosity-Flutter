@@ -1,23 +1,22 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-enum NavigationBarEvent { TODAY, MINDFUL, MORE }
+enum NavigationBarEvent { today, mindful, more }
 
 class NavigationNotifier extends StateNotifier<PageModel> {
   NavigationNotifier() : super(defaultPage);
 
-  static const defaultPage = PageModel(NavigationBarEvent.TODAY);
+  static const defaultPage = PageModel(NavigationBarEvent.today);
 
   void selectPage(int i) {
-    print("selected page $i");
     switch (i) {
       case 0:
-        state = const PageModel(NavigationBarEvent.TODAY);
+        state = const PageModel(NavigationBarEvent.today);
         break;
       case 1:
-        state = const PageModel(NavigationBarEvent.MINDFUL);
+        state = const PageModel(NavigationBarEvent.mindful);
         break;
       case 2:
-        state = const PageModel(NavigationBarEvent.MORE);
+        state = const PageModel(NavigationBarEvent.more);
         break;
     }
   }
