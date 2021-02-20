@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   audioplayer: ^0.8.1
+  audioplayers: ^0.17.4
 
   cupertino_icons: ^1.0.2
 #  flutter_svg: ^0.19.2+1

@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:audioplayer/audioplayer.dart';
+// import 'package:audioplayer/audioplayer.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -74,7 +75,7 @@ class _AudioAppState extends State<AudioApp> {
     _audioPlayerStateSubscription =
         audioPlayer.onPlayerStateChanged.listen((s) {
       if (s == AudioPlayerState.PLAYING) {
-        setState(() => duration = audioPlayer.duration);
+        // setState(() => duration = audioPlayer.duration);
       } else if (s == AudioPlayerState.STOPPED) {
         onComplete();
         setState(() {
@@ -116,12 +117,12 @@ class _AudioAppState extends State<AudioApp> {
     });
   }
 
-  Future mute(bool muted) async {
-    await audioPlayer.mute(muted);
-    setState(() {
-      isMuted = muted;
-    });
-  }
+  // Future mute(bool muted) async {
+  //   await audioPlayer.mute(muted);
+  //   setState(() {
+  //     isMuted = muted;
+  //   });
+  // }
 
   void onComplete() {
     setState(() => playerState = PlayerState.stopped);
@@ -217,16 +218,16 @@ class _AudioAppState extends State<AudioApp> {
             color: Colors.cyan,
           ),
         ]),
-        if (duration != null)
-          Slider(
-              value: position?.inMilliseconds?.toDouble() ?? 0.0,
-              onChanged: (double value) {
-                return audioPlayer.seek((value / 1000).roundToDouble());
-              },
-              min: 0.0,
-              max: duration.inMilliseconds.toDouble()),
-        if (position != null) _buildMuteButtons(),
-        if (position != null) _buildProgressView()
+        // if (duration != null)
+        //   Slider(
+        //       value: position?.inMilliseconds?.toDouble() ?? 0.0,
+        //       onChanged: (double value) {
+        //         return audioPlayer.seek((value / 1000).roundToDouble());
+        //       },
+        //       min: 0.0,
+        //       max: duration.inMilliseconds.toDouble()),
+        // // if (position != null) _buildMuteButtons(),
+        // if (position != null) _buildProgressView()
       ],
     ),
   );
@@ -251,26 +252,26 @@ class _AudioAppState extends State<AudioApp> {
     )
   ]);
 
-  Row _buildMuteButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        if (!isMuted)
-          FlatButton.icon(
-            onPressed: () => mute(true),
-            icon: Icon(
-              Icons.headset_off,
-              color: Colors.cyan,
-            ),
-            label: Text('Mute', style: TextStyle(color: Colors.cyan)),
-          ),
-        if (isMuted)
-          FlatButton.icon(
-            onPressed: () => mute(false),
-            icon: Icon(Icons.headset, color: Colors.cyan),
-            label: Text('Unmute', style: TextStyle(color: Colors.cyan)),
-          ),
-      ],
-    );
-  }
+  // Row _buildMuteButtons() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //     children: <Widget>[
+  //       if (!isMuted)
+  //         FlatButton.icon(
+  //           onPressed: () => mute(true),
+  //           icon: Icon(
+  //             Icons.headset_off,
+  //             color: Colors.cyan,
+  //           ),
+  //           label: Text('Mute', style: TextStyle(color: Colors.cyan)),
+  //         ),
+  //       if (isMuted)
+  //         FlatButton.icon(
+  //           onPressed: () => mute(false),
+  //           icon: Icon(Icons.headset, color: Colors.cyan),
+  //           label: Text('Unmute', style: TextStyle(color: Colors.cyan)),
+  //         ),
+  //     ],
+  //   );
+  // }
 }
