@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class GoodMorningScreen extends StatelessWidget {
-  const GoodMorningScreen({Key key}) : super(key: key);
+class AudioPlayer extends StatelessWidget {
+  const AudioPlayer({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -11,17 +11,14 @@ class GoodMorningScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const Text(
-            'Good morning',
+            'Mindful Sessions',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
           const Text(
-            "It's time to set your goals for today.",
+            'Audio recordings for mindful eating, walking, or washing.',
             style: TextStyle(fontSize: 16),
           ),
-          const SizedBox(height: 84),
-          SvgPicture.asset('assets/images/target.svg',
-              semanticsLabel: 'Target', height: 200),
           const SizedBox(height: 144),
           SizedBox(
             width: 275,

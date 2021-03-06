@@ -1,9 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'controllers/navigation_controller.dart';
-import 'screens/mindful_sessions_screen.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
+// import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_performance/firebase_performance.dart'; // actually used as a side-effect; don't delete!
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-void main() {
+import 'controllers/navigation_controller.dart';
+import 'screens/play_audio_screen.dart';
+
+// FirebaseAnalytics analytics;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  // analytics = FirebaseAnalytics();
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   runApp(
     // For widgets to be able to read providers, we need to wrap the entire
     // application in a "ProviderScope" widget.
@@ -21,11 +33,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'META Curiosity',
       initialRoute: '/',
+      // navigatorObservers: [FirebaseAnalyticsObserver(analytics: analytics)],
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => const NavigationBarScreen(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        '/audio_player': (context) => const AudioPlayer(),
+        '/play_audio': (context) => const AudioPlayer(),
       },
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../audioplayer.dart';
 
 class MindfulSessionsScreen extends StatelessWidget {
   const MindfulSessionsScreen({Key key}) : super(key: key);
@@ -8,12 +7,11 @@ class MindfulSessionsScreen extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
             'Mindful Session Player',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 42,
             ),
           ),
           ElevatedButton(
@@ -23,7 +21,7 @@ class MindfulSessionsScreen extends StatelessWidget {
             ),
             onPressed: () {
               // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/audio_player');
+              Navigator.pushNamed(context, '/play_audio');
             },
             child: const Text('Eating'),
           ),
@@ -34,7 +32,7 @@ class MindfulSessionsScreen extends StatelessWidget {
             ),
             onPressed: () {
               // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/audio_player');
+              Navigator.pushNamed(context, '/play_audio');
             },
             child: const Text('Walking'),
           ),
@@ -45,10 +43,12 @@ class MindfulSessionsScreen extends StatelessWidget {
             ),
             onPressed: () {
               // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/audio_player',
+              Navigator.pushNamed(
+                context,
+                '/play_audio',
                 arguments: <String, String>{
-                'city': 'Berlin',
-                'country': 'Germany',
+                  'city': 'Berlin',
+                  'country': 'Germany',
                 },
               );
             },
@@ -57,19 +57,58 @@ class MindfulSessionsScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class AudioPlayer extends StatelessWidget {
-  const AudioPlayer({Key key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Audio Player'),
+    /* Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Mindful Session Player',
+            style: TextStyle(
+              fontSize: 42,
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.orangeAccent, // background
+              onPrimary: Colors.white, // foreground
+            ),
+            onPressed: () {
+              // Navigate to the second screen using a named route.
+              Navigator.pushNamed(context, '/play_audio');
+            },
+            child: const Text('Eating'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green, // background
+              onPrimary: Colors.white, // foreground
+            ),
+            onPressed: () {
+              // Navigate to the second screen using a named route.
+              Navigator.pushNamed(context, '/play_audio');
+            },
+            child: const Text('Walking'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.lightBlue, // background
+              onPrimary: Colors.white, // foreground
+            ),
+            onPressed: () {
+              // Navigate to the second screen using a named route.
+              Navigator.pushNamed(
+                context,
+                '/play_audio',
+                arguments: <String, String>{
+                  'city': 'Berlin',
+                  'country': 'Germany',
+                },
+              );
+            },
+            child: const Text('Washing'),
+          ),
+        ],
       ),
-      body:
-          const AudioApp(name: 'Mindful Session'),
-    );
+    ) */
   }
 }
